@@ -1,0 +1,18 @@
+import requests
+word= input("Enter the word you want to search for: ") #initializing the word to be searched for
+
+url="https://api.dictionaryapi.dev/api/v2/entries/en_US/"+word #the url + the querry/word 
+response=requests.get(url) # gets the word 
+meaning= response.json() #returns a json object ans usability of the contents
+
+try:
+    try:
+        n= 'A ' + meaning[0]['meanings'][1]['partOfSpeech']
+        m=meaning[0]['meanings'][1]['definitions'][0]['definition']
+        print(word+'. '+n+'. '+m)
+    except IndexError:
+        n= 'A ' + meaning[0]['meanings'][0]['partOfSpeech']
+        m=meaning[0]['meanings'][0]['definitions'][0]['definition']
+        print(word+'. '+n+'. '+m)
+except KeyError:
+    print("No meaning could be found!!")
