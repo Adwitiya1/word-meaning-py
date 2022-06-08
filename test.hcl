@@ -1,4 +1,4 @@
-import "tfplan-functions" as plan
+import "tfplan/v2" as plan
 
 # Get all S3 buckets
 allS3Buckets = plan.find_resources("aws_s3_bucket")
